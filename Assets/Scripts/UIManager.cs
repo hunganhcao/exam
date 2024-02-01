@@ -48,9 +48,19 @@ public class UIManager : MonoBehaviour
 
 	private void HideLoseWin()
 	{
-		isLose.Value = false;
-		isWin.Value = false;
+		if (isWin.Value)
+		{
+			isWin.Value = false;
+			LevelGenerator.Instance.Clean();
+			LevelGenerator.Instance.GenerateLevel();
+		}
+		if(isLose.Value)
+		{
+			isLose.Value = false;
+		}
+		
 		SceneManager.LoadScene(0);
+		
 	}
 
 	private void OnDestroy()

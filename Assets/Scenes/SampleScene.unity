@@ -6958,7 +6958,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1391627467}
   - component: {fileID: 1391627468}
-  - component: {fileID: 1391627469}
   m_Layer: 0
   m_Name: Generator
   m_TagString: Untagged
@@ -7079,33 +7078,6 @@ MonoBehaviour:
   platformHeight: 0.3
   badMaterial: {fileID: 2100000, guid: 26b08678b61fe444dbb752b5dec7977b, type: 2}
   winMaterial: {fileID: 2100000, guid: ab96ca9e81031bd40ac21b030604a988, type: 2}
---- !u!54 &1391627469
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1391627466}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &1407207912
 GameObject:
   m_ObjectHideFlags: 0
@@ -7771,7 +7743,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Restart
+  m_Text: Next
 --- !u!222 &1481027913
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
 {
-    [SerializeField] private Platform platform;
+    public static LevelGenerator Instance;
+	private void Awake()
+	{
+		Instance = this;
+	}
+	[SerializeField] private Platform platform;
     [SerializeField] private float angleStep;
     [SerializeField] private int platformAmount;
     [SerializeField] private float platformHeight;

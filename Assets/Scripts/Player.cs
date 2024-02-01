@@ -62,14 +62,15 @@ public class Player : MonoBehaviour
 	private void OnCollisionEnter(Collision other)
 	{
 		if (_isEnd) { return; }
+		if (other.collider.gameObject.CompareTag("Win"))
+		{
+			Debug.Log("WIN");
+			isWin.Value = true;
+			_isEnd = true;
+		}
 		if (_clicking)
 			{
-				if (other.collider.gameObject.CompareTag("Win"))
-				{
-					Debug.Log("WIN");
-					isWin.Value = true;
-					_isEnd=true;
-				}
+				
 				if (other.collider.gameObject.CompareTag("Bad"))
 				{
 					Debug.Log("LOSE");
