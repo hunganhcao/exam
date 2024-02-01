@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityExtensions.Tween;
 
 public class UIManager : MonoBehaviour
 {
@@ -21,9 +22,15 @@ public class UIManager : MonoBehaviour
 	private bool _isCount;
 	private float _countDown;
 	private int _timeCount;
+	private TweenPlayer _tweenWin;
+	private TweenPlayer _tweenRevive;
+	private TweenPlayer _tweenLose;
 
 	private void Awake()
 	{
+		_tweenWin= popupWin.GetComponent<TweenPlayer>();
+		_tweenRevive= popupRevive.GetComponent<TweenPlayer>();
+		_tweenLose= popupLose.GetComponent<TweenPlayer>();
 		isWin.AddListener(ShowWin);
 		isLose.AddListener(ShowRevive);
 		_isCount = false;
@@ -41,6 +48,7 @@ public class UIManager : MonoBehaviour
 
 	private void HideLoseWin()
 	{
+		isLose.Value = false;
 		isWin.Value = false;
 		SceneManager.LoadScene(0);
 	}
@@ -64,7 +72,7 @@ public class UIManager : MonoBehaviour
 			}
 			else
 			{
-				isLose.Value = false;
+
 				ShowLose();
 				_countDown = _timeCount;
 				_isCount = false;
@@ -74,18 +82,39 @@ public class UIManager : MonoBehaviour
 	}
 	private void ShowWin()
 	{
+		_isCount = false;
 		popupWin.SetActive(isWin.Value);
+		if (isWin.Value)
+		{
+			_tweenWin.Play();
+		}
+		else
+		{
+			_tweenWin.Stop();
+		}
 	}
 	private void ShowRevive()
 	{
 		popupRevive.SetActive(isLose.Value);
-		_countDown = _timeCount;
-		_isCount =true;
+		if(isLose.Value)
+		{
+			_countDown = _timeCount;
+			_isCount = true;
+			_tweenRevive.Play();
+		}
+		else
+		{
+			_tweenRevive.Stop();
+		}
+		
+		
 		
 	}
 	private void ShowLose()
 	{
+		popupRevive.SetActive(false);
 		popupLose.SetActive(true);
+		_tweenLose.Play();
 	}
 
 }

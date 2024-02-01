@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
 	private bool _clicking;
 	[SerializeField] BoolVariable isWin;
 	[SerializeField] BoolVariable isLose;
+	private bool _isEnd;
 	private void Awake()
 	{
 		isLose.AddListener(Revive);
@@ -23,17 +24,28 @@ public class Player : MonoBehaviour
 
 	private void Revive()
 	{
-		//_clicking = false;
-		_rb.velocity = Vector3.up * speedJump;
+		_clicking = false;
+		if (_rb != null)
+		{
+			_rb.velocity = Vector3.up * speedJump;
+		}
+
+		_isEnd = false;
 	}
 
 	private void Start()
 	{
 		_clicking = false;
+		_isEnd = false;
 	}
 
 	private void Update()
 	{
+		Clicking();
+	}
+	private void Clicking()
+	{
+		if(_isEnd) { return; }
 		if (Input.GetMouseButtonDown(0))
 		{
 			_clicking = true;
@@ -49,17 +61,20 @@ public class Player : MonoBehaviour
 	}
 	private void OnCollisionEnter(Collision other)
 	{
-			if (_clicking)
+		if (_isEnd) { return; }
+		if (_clicking)
 			{
 				if (other.collider.gameObject.CompareTag("Win"))
 				{
 					Debug.Log("WIN");
 					isWin.Value = true;
+					_isEnd=true;
 				}
 				if (other.collider.gameObject.CompareTag("Bad"))
 				{
 					Debug.Log("LOSE");
 					isLose.Value = true;
+					_isEnd=true;
 				}
 				else if (other.collider.gameObject.CompareTag("Good"))
 				{

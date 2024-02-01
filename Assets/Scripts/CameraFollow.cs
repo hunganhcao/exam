@@ -12,6 +12,7 @@ public class CameraFollow : MonoBehaviour
     void Start()
     {
         _offset = transform.position.y-target.position.y;
+        _minY = transform.position.y;
     }
 
     // Update is called once per frame
